@@ -2,8 +2,9 @@
  * @author bednarzt
  *
  */
-public class Main {
 
+public class Main {
+	
 	/**
 	 * @param args
 	 */
