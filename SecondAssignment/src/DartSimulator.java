@@ -10,13 +10,14 @@ import static java.lang.System.out;
  */
 public class DartSimulator {
 	
-	public static final double RUNS = 1000.0;
+	public static final double RUNS = 10000.0;
 
 	/**
 	 * Entry point
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		// #1a
 		makeRectangles();
 		out.println();
