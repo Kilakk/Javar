@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 /*
  * 12. Write a method that takes an ArrayList<String> and returns a new ArrayList<String> in which the elements are stored in reverse order. 
@@ -18,7 +20,9 @@ import java.util.List;
 
 public class LitvinBook {
 	public static List<String> list = new ArrayList<>();
+	public static List<Integer> intlist = new ArrayList<>();
 
+	// 12
 	public static List<String> reverseOrder(List<String> list) {
 		ArrayList<String> newlist = new ArrayList<>();
 		
@@ -29,6 +33,7 @@ public class LitvinBook {
 		return newlist;
 	}
 	
+	// 13
 	public static void removeSmallest(List<Integer> list) {
 		
 		// the index of the minimum value
@@ -43,22 +48,103 @@ public class LitvinBook {
 		list.remove(small);
 	}
 	
-	public static void filter(ArrayList<Object> a, ArrayList<Object> b) {
-		
+	// 14
+	public static void filter(List<?> b, List<?> a) {
+		Iterator<?> aIterator = a.iterator();
+		Iterator<?> bIterator = b.iterator();
+
+		while (aIterator.hasNext())
+		{
+			Object aObj = aIterator.next();
+
+			while (bIterator.hasNext())
+			{
+				Object bObj = bIterator.next();
+				if (aObj == bObj) bIterator.remove();
+			}
+
+			bIterator = b.iterator();
+		}
+	}
+	
+	// 15
+	public static void removeDuplicates(List<String> a) {
+		for(int i = a.size() - 1; i >= 0; i--) {
+			if(a.indexOf(a.get(i)) != i) {
+				a.remove(a.indexOf(a.get(i)));
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
-		list.add("apple");
-		list.add("blueberry");
-		list.add("cantaloupe");
-		list.add("banana");
-		list.add("grape");
-		list.add("kiwi");
-		list.add("melon");
-
-		List<String> rlist = reverseOrder(list);
+		Random rand = new Random();
 		
-		System.out.println(rlist);
+		String teststring = "REMOVE ME";
+		
+		// tyler did this
+		list.add(teststring);
+		list.add(teststring);
+		list.add("apple");
+		list.add(teststring);
+		list.add("blueberry");
+		list.add(teststring);
+		list.add("cantaloupe");
+		list.add(teststring);
+		list.add("banana");
+		list.add(teststring);
+		list.add("grape");
+		list.add(teststring);
+		list.add(teststring);
+		list.add(teststring);
+		list.add("kiwi");
+		list.add(teststring);
+		list.add(teststring);
+		list.add(teststring);
+		list.add("melon");
+		list.add(teststring);
+		list.add(teststring);
+
+		List<String> testlist = new ArrayList<>();
+		testlist.add(teststring);
+		testlist.add("apple");
+		testlist.add("Mr. Miller");
+		
+		
+		for(int i = 0; i < 10; i++) {
+			intlist.add(rand.nextInt(100));
+		}
+
+		
+		// #12
+		List<String> rlist = reverseOrder(list);
+		System.out.println("Reverse Order: " + rlist);
+		System.out.println("===");
+		
+		// #13
+		System.out.println("Original: " + intlist);
+		removeSmallest(intlist);
+		System.out.println("Removed Smallest: " + intlist);
+		System.out.println("===");
+		
+		// #14
+		System.out.println(list);
+		System.out.println(testlist);
+		filter(list, testlist);
+		System.out.println(list);
+		System.out.println(testlist);
+		
+		System.out.println("===");
+		
+		// #15
+		
+		// add some duplicate strings
+		list.add("kiwi");
+		list.add("grape");
+		
+		// let's get rid of them
+		System.out.println(list);
+		removeDuplicates(list);
+		System.out.println(list);
 	}
 	
 }
